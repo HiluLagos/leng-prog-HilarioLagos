@@ -40,24 +40,32 @@ insert n (x:xs)  = if n < x then n : x : xs else x : insert n xs
 
 -- Takes element and compares it to the one on the left, moves it until left is <
 insertionSort :: [Int] -> [Int]
-insertionSort = error "Implement it"
+insertionSort [] = []
+insertionSort (x:xs) = insert x (insertionSort xs)
+-- insertionSort (x:xs) = foldr insert x xs
 
 binaryToDecimal :: [Int] -> Int
-binaryToDecimal = error "Implement it"
+binaryToDecimal [] = 0
+binaryToDecimal (x:xs) = x * (2^(length xs)) + binaryToDecimal xs
     
 toDecimal :: Int -> [Int] -> Int
-toDecimal = error "Implement it"
+toDecimal _ [] = 0
+toDecimal b (x:xs) = x * (b^(length xs)) + toDecimal b xs
     
 toDec::Int -> String -> Int
-toDec base s = error "Implement it"
+toDec base s = toDecimal base s2
+  where s2 = map digitToInt s
 
 -- Same as `toDec` But use a list comprehension
 
 decimal::Int -> String -> Int
-decimal  = error "Implement it"
+decimal base s = toDecimal base s2
+  where s2 = map digitToInt s
 
 firsts::[a] -> [[a]]
-firsts = error "Implement it"
+firsts [] = [[]]
+firsts (x:xs) = [first2 : (x:xs)]
+  where first2::
 
 -- Given two String that represents numbers in binary implement the 'binaryAdd' function
 -- DO NOT USE a predefined '+' operation
