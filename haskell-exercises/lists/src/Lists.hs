@@ -1,6 +1,6 @@
 module Lists (member, union, intersection, difference,
               insert, insertionSort,
-              binaryToDecimal, toDecimal, toDec, decimal,
+              binaryToDecimal, toDecimal, toDec, decimal, firsts,
               binaryAdd) where
   
 import Data.Char(digitToInt)  
@@ -19,14 +19,26 @@ union (x:xs) ys
 -- Remove Implementations, from, here on
 
 intersection:: [Int] -> [Int] -> [Int]
-intersection = error "Implement it"
+intersection [] _ = []
+intersection _ [] = []
+intersection (x:xs) ys = if elem x ys then [x] ++ listInt else [] ++ listInt
+  where
+    listInt = intersection xs ys
+
 
 difference:: [Int] -> [Int] -> [Int]
-difference  = error "Implement it"
+difference [] _ = []
+difference xs [] = xs
+difference (x:xs) ys = if elem x ys then [] ++ listDiff else [x] ++ listDiff
+  where
+    listDiff = difference xs ys
 
+-- Assuming Ordered List
 insert:: Int -> [Int] -> [Int]
-insert = error "Implement it"
+insert n [] = [n]
+insert n (x:xs)  = if n < x then n : x : xs else x : insert n xs
 
+-- Takes element and compares it to the one on the left, moves it until left is <
 insertionSort :: [Int] -> [Int]
 insertionSort = error "Implement it"
 
@@ -37,7 +49,7 @@ toDecimal :: Int -> [Int] -> Int
 toDecimal = error "Implement it"
     
 toDec::Int -> String -> Int
-toDec base s =  = error "Implement it"
+toDec base s = error "Implement it"
 
 -- Same as `toDec` But use a list comprehension
 
