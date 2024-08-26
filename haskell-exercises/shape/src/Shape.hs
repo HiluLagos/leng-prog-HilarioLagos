@@ -5,7 +5,6 @@ data Point = Point { x::Double, y:: Double} deriving (Eq, Show)
 data Circle    = Circle    Point Double deriving (Eq, Show)
 data Rectangle = Rectangle Point Point deriving (Eq, Show)
 
-
 -- A point from a tuple Pair
 point::(Double, Double) -> Point
 point (x, y) = Point {x=x, y=y}
@@ -30,21 +29,19 @@ circle::Double -> Circle
 circle r = Circle origin r
 
 -- Clase Shift
-
 class Shift a where
    shift::a -> (Double, Double) -> a
-   
+
 instance Shift Point where
-   shift (Point x1 y1) (x2, y2) = point (x2+x1, y2+y1)
-   
+   shift (Point x y) (dx, dy) = Point (x + dx) (y + dy)
+
+-- Aca puedo reutilizar el shift anterior para no escribir las coordenadas de cada cosa
 instance Shift Rectangle where
-   shift (Rectangle (Point x1 y1) (Point x2 y2)) (px, py) = Rectangle (point (x1 + px, y1 + py)) (point (x2 + px, y2 + py))
-   
+   shift (Rectangle p1 p2) (dx, dy) = Rectangle (shift p1 (dx, dy)) (shift p2 (dx, dy))
+
 instance Shift Circle where
-   shift  (Circle (Point x y) r) (px, py) = Circle (point (x+px, y+py)) r
-   
--- Define the Surface class
-   
+   shift (Circle p r) (dx, dy) = Circle (shift p (dx, dy)) r
+
 -- Define the Surface class
 class Surface a where
    surface::a -> Double
