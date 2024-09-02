@@ -19,10 +19,10 @@ rectangle p = Rectangle origin (point p)
 
 -- Usa el constructor de Point para aclarar que el rectanfulo esta compuesto por estos
 base::Rectangle -> Double
-base (Rectangle (Point x1 _) (Point x2 _)) = x2 - x1
+base (Rectangle (Point x1 _) (Point x2 _)) = abs (x2 - x1)
 
 height::Rectangle -> Double
-height (Rectangle (Point _ y1) (Point _ y2)) = y2 - y1
+height (Rectangle (Point _ y1) (Point _ y2)) = abs (y2 - y1)
 
 -- Circle from radius
 circle::Double -> Circle
