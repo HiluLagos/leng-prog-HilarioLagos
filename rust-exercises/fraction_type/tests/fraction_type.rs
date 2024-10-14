@@ -8,12 +8,12 @@ fn test_add() {
 
 #[test]
 fn test_sub() {
-    let result = Fraction(1,2).sub(Fraction(1,4));
+    let result = Fraction(1,2).subtract(Fraction(1,4));
     assert_eq!(result, Fraction(1, 4));
 }
 #[test]
 fn test_mul() {
-     let result = Fraction(1, 2).mul(Fraction(1, 4));
+     let result = Fraction(1, 2).multiply(Fraction(1, 4));
      assert_eq!(result, Fraction(1, 8));
 }
 #[test]
